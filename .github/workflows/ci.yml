@@ -1,0 +1,19 @@
+# Nom du workflow, tel qu'il apparaitra dans l'onglet Actions
+name: Verification
+
+# QUAND le lancer : à chaque pull request, et à chaque push sur main
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  verifier:
+    runs-on: ubuntu-latest
+    steps:
+      # Une machine Linux toute neuve, fournie par GitHub
+      - name: Recuperer le code du depot
+        uses: actions/checkout@v5
+        
+      - name: Lancer les tests du site
+        run: bash tests/verifier.sh
